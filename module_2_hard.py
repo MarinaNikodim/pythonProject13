@@ -1,24 +1,19 @@
-#from itertools import combinations
+tablo1 = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+tablo2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 
-def Findpairs(targ_value, m_2nd_tablo):
-    m_2nd_tablo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+def find_pairs(tablo1, tablo2):
     result = {}
-    for target in targ_value:
+    for num in tablo1:
         pairs = []
-        for i in range(len(m_2nd_tablo)):
-            for j in range(i +1, len(m_2nd_tablo)):
-                if m_2nd_tablo[i] + m_2nd_tablo[j] == target:
-                    pairs.append((m_2nd_tablo[i], m_2nd_tablo[j]))
-        result[target] = pairs
+        for i in range(len(tablo2)):
+            for j in range(i + 1, len(tablo2)):
+                if num % (tablo2[i] + tablo2[j]) == 0:
+                    pairs.append((tablo2[i], tablo2[j]))
+        result[num] = pairs
     return result
 
-def filter_multiples(n, lst):
-    return [x for x in lst if x % n == 0]
 
+result_total = find_pairs(tablo1, tablo2)
 
-n_1st_tablo = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-m_2nd_tablo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-filtered_m_2nd_tablo = filter_multiples(n_1st_tablo[0], m_2nd_tablo)
-result = Findpairs(n_1st_tablo, filtered_m_2nd_tablo)
-for target, pairs in result.items():
-    print(f"пары для числа: {target}- {pairs}")
+for num, pairs in result_total.items():
+    print(f"Пары для числа {num} - {pairs}")
